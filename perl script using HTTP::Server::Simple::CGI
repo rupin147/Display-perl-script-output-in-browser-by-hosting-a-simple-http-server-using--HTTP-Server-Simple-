@@ -1,0 +1,20 @@
+ #!/usr/bin/perl
+ #Visit rupinp.blogspot.com 
+ #Dynamic content  hosted on web browser using perl script  
+ {
+ package WebServer;
+
+ use HTTP::Server::Simple::CGI;
+ use base qw(HTTP::Server::Simple::CGI);
+
+ sub handle_request {
+          print "Hi this is Rupin\n";              #print the output as Hi this is Rupin
+          $date = qx("date");                      #capture date command output into date variable
+          print "\nTodays date is - $date";        #Print the date from captured date variable  
+          $ip =qx("ifconfig");                     #capture the ifconfig command output into variable
+          print "\n\n$ip";                         #print the output which is capture into ip variable            
+                     }
+ }
+ # start the server on port 8080
+ my $server = WebServer->new();
+ $server->run();
